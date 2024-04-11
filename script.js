@@ -94,6 +94,12 @@ function createPairs(pairs) {
     cards.push(card1, card2);
   }
 
+  // Shuffles cards
+  for (let i = cards.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+
   // add event listeners and append cards to the game container
   let gameContainer = document.querySelector(".memory-game");
   cards.forEach((card) => {
