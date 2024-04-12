@@ -1,9 +1,9 @@
 let overlayHTML = `
   <div id="overlay">
     <h1>Select Game Mode</h1>
-    <button id="easy">Easy</button>
-    <button id="normal">Normal</button>
-    <button id="hard">Hard</button>
+    <button id="easy" class='difficulty-button'>Easy</button>
+    <button id="normal" class='difficulty-button'>Normal</button>
+    <button id="hard" class='difficulty-button'>Hard</button>
   </div>
 `;
 
@@ -34,8 +34,10 @@ function startGame(mode) {
   }
 
   // Remove the overlay
-  document.getElementById("overlay").style.display = "none";
+  document.getElementById("overlay").classList.add("hidden");
 
+  // Show the game container
+  document.querySelector(".memory-game").classList.remove("hidden");
   // Start the game
   let pairs;
   switch (gameMode) {
@@ -125,7 +127,22 @@ function createPairs(pairs) {
             flippedCards = [];
             if (matchedPairs === pairs) {
               // All pairs have been matched, end the game
-              console.log("Game over, you won!");
+              Swal.fire({
+                title: "Game over, you won!",
+                text: "Do you want to play again or Exit?",
+                showDenyButton: true,
+                confirmButtonText: "Play again",
+                denyButtonText: "Exit",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // User clicked "Play again", reset the game
+                  gameContainer.innerHTML = "";
+                  createPairs(pairs);
+                } else if (result.isDenied) {
+                  // User clicked "Return to start", refresh the page
+                  location.reload();
+                }
+              });
             }
           } else {
             // The cards don't match, flip them back after a delay
@@ -142,3 +159,20 @@ function createPairs(pairs) {
     gameContainer.appendChild(card);
   });
 }
+
+let difficultyButtons = document.querySelectorAll(".difficulty-button");
+difficultyButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    // Hide the overlay
+    document.getElementById("overlay").classList.add("hidden");
+
+    // Clear the game container
+    gameContainer.innerHTML = "";
+
+    // Get the number of pairs for the selected difficulty
+    let pairs = this.dataset.pairs;
+
+    // Start the game
+    createPairs(pairs);
+  });
+});
