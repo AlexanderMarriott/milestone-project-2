@@ -29,8 +29,10 @@ function startGame(mode) {
   let gameContainer = document.querySelector(".memory-game");
   if (gameMode === "hard") {
     gameContainer.classList.add("hard-mode");
+  } else if (gameMode === "easy") {
+    gameContainer.classList.add("easy-mode");
   } else {
-    gameContainer.classList.remove("hard-mode");
+    gameContainer.classList.remove("easy-mode hard-mode");
   }
 
   // Remove the overlay
@@ -133,6 +135,7 @@ function createPairs(pairs) {
                 showDenyButton: true,
                 confirmButtonText: "Play again",
                 denyButtonText: "Exit",
+                allowOutsideClick: false,
               }).then((result) => {
                 if (result.isConfirmed) {
                   // User clicked "Play again", reset the game
