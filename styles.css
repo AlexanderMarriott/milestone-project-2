@@ -23,6 +23,7 @@ body {
   height: 90vh;
   max-width: 640px;
   max-height: 640px;
+  user-select: none;
 }
 
 .memory-card {
@@ -80,6 +81,7 @@ body {
   align-items: center;
   font-size: 3em;
   backface-visibility: hidden;
+  border-radius: 5px;
 }
 
 .memory-game.hard-mode {
@@ -100,4 +102,13 @@ body {
 
 .hidden {
   display: none;
+}
+
+.memory-game.easy-mode .memory-card {
+  width: calc(
+    (100% / 3) - 20px
+  ); /* Adjust the '4' for number of cards per row */
+  height: calc(
+    (100% / 2) - 20px
+  ); /* Adjust the '4' for number of cards per column */
 }
