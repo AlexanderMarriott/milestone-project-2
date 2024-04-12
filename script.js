@@ -57,6 +57,7 @@ function startGame(mode) {
 
 function createPairs(pairs) {
   let cards = [];
+  let flippedCards = [];
   const cardsData = [
     "A",
     "B",
@@ -112,7 +113,27 @@ function createPairs(pairs) {
   let gameContainer = document.querySelector(".memory-game");
   cards.forEach((card) => {
     card.addEventListener("click", function () {
-      card.classList.toggle("is-flipped");
+      if (flippedCards.length < 2 && !card.classList.contains("is-flipped")) {
+        card.classList.add("is-flipped");
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+          if (flippedCards[0].dataset.pair === flippedCards[1].dataset.pair) {
+            // The cards match
+            flippedCards.forEach((card) => {
+              card.removeEventListener("click", card.click);
+            });
+          } else {
+            // The cards don't match, flip them back after a delay
+            setTimeout(() => {
+              flippedCards.forEach((card) => {
+                card.classList.remove("is-flipped");
+              });
+              flippedCards = [];
+            }, 1000);
+          }
+        }
+      }
     });
     gameContainer.appendChild(card);
   });
