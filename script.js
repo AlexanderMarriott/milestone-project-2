@@ -58,6 +58,7 @@ function startGame(mode) {
 function createPairs(pairs) {
   let cards = [];
   let flippedCards = [];
+  let matchedPairs = 0;
   const cardsData = [
     "A",
     "B",
@@ -120,9 +121,12 @@ function createPairs(pairs) {
         if (flippedCards.length === 2) {
           if (flippedCards[0].dataset.pair === flippedCards[1].dataset.pair) {
             // The cards match
-            flippedCards.forEach((card) => {
-              card.removeEventListener("click", card.click);
-            });
+            matchedPairs++;
+            flippedCards = [];
+            if (matchedPairs === pairs) {
+              // All pairs have been matched, end the game
+              console.log("Game over, you won!");
+            }
           } else {
             // The cards don't match, flip them back after a delay
             setTimeout(() => {
