@@ -25,6 +25,14 @@ function startGame(mode) {
   // Set the game mode
   gameMode = mode;
 
+  // Add or remove the "hard-mode" class based on the game mode
+  let gameContainer = document.querySelector(".memory-game");
+  if (gameMode === "hard") {
+    gameContainer.classList.add("hard-mode");
+  } else {
+    gameContainer.classList.remove("hard-mode");
+  }
+
   // Remove the overlay
   document.getElementById("overlay").style.display = "none";
 
