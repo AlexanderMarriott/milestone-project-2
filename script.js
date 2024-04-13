@@ -78,8 +78,38 @@ function createPairs(pairs) {
     "fa-spider",
   ];
 
-  // Shuffle the cardsData array
+  // Mapping between icons and sound files
+  let iconSounds = {
+    "fa-dog": "assets/audio/dog.mp3",
+    "fa-cat": "assets/audio/cat.mp3",
+    "fa-crow": "assets/audio/crow.mp3",
+    "fa-dove": "assets/audio/dove.mp3",
+    "fa-dragon": "assets/audio/dragon.mp3",
+    "fa-horse": "assets/audio/horse.mp3",
+    "fa-hippo": "assets/audio/hippo.mp3",
+    "fa-fish": "assets/audio/fish.mp3",
+    "fa-frog": "assets/audio/frog.mp3",
+    "fa-kiwi-bird": "assets/audio/kiwi.mp3",
+    "fa-otter": "assets/audio/otter.mp3",
+    "fa-spider": "assets/audio/spider.mp3",
+    // ... add more icons and sounds as needed ...
+  };
+
+  const colors = [
+    "red",
+    "yellow",
+    "purple",
+    "pink",
+    "orange",
+    "cyan",
+    "magenta",
+    "teal",
+    "coral",
+  ];
+
+  // Shuffle the cardsData and colors array
   cardsData.sort(() => Math.random() - 0.5);
+  colors.sort(() => Math.random() - 0.5);
 
   for (let i = 0; i < pairs; i++) {
     // create two cards for each pair
@@ -90,6 +120,14 @@ function createPairs(pairs) {
     // sets data attribute
     card1.dataset.pair = i;
     card2.dataset.pair = i;
+
+    if (gameMode === "hard") {
+      card1.style.backgroundColor = colors[0];
+      card2.style.backgroundColor = colors[0];
+    } else {
+      card1.style.backgroundColor = colors[i];
+      card2.style.backgroundColor = colors[i];
+    }
 
     // create a front and a back for each card
     let front1 = document.createElement("div");

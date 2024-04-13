@@ -57,7 +57,6 @@ body {
 }
 
 .front-face {
-  background-color: red;
   backface-visibility: hidden;
   transform: rotateY(180deg);
 }
