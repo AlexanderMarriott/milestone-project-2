@@ -13,6 +13,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  user-select: none;
 }
 .memory-game {
   display: flex;
@@ -30,10 +31,10 @@ body {
   background-color: transparent;
   width: calc(
     (100% / 4) - 20px
-  ); /* Adjust the '4' for number of cards per row */
+  ); /* Adjust based on the number of cards per row */
   height: calc(
     (100% / 4) - 20px
-  ); /* Adjust the '4' for number of cards per column */
+  ); /* Adjust based on the number of cards per column */
   position: relative;
   margin: 10px;
   border-radius: 5px;
@@ -64,6 +65,7 @@ body {
 .back-face {
   background-color: blue;
   backface-visibility: hidden;
+  border: 5px solid white;
 }
 
 .memory-card.is-flipped {
