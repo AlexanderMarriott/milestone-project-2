@@ -32,7 +32,7 @@ function startGame(mode) {
   } else if (gameMode === "easy") {
     gameContainer.classList.add("easy-mode");
   } else {
-    gameContainer.classList.remove("easy-mode hard-mode");
+    gameContainer.classList.remove("easy-mode", "hard-mode");
   }
 
   // Remove the overlay
@@ -64,19 +64,22 @@ function createPairs(pairs) {
   let flippedCards = [];
   let matchedPairs = 0;
   const cardsData = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
+    "fa-dog",
+    "fa-cat",
+    "fa-crow",
+    "fa-dove",
+    "fa-dragon",
+    "fa-horse",
+    "fa-hippo",
+    "fa-fish",
+    "fa-frog",
+    "fa-kiwi-bird",
+    "fa-otter",
+    "fa-spider",
   ];
+
+  // Shuffle the cardsData array
+  cardsData.sort(() => Math.random() - 0.5);
 
   for (let i = 0; i < pairs; i++) {
     // create two cards for each pair
@@ -93,7 +96,9 @@ function createPairs(pairs) {
     let back1 = document.createElement("div");
     front1.classList.add("front-face");
     back1.classList.add("back-face");
-    front1.textContent = cardsData[i]; // test content front face
+    let icon1 = document.createElement("i");
+    icon1.classList.add("fas", cardsData[i]);
+    front1.appendChild(icon1);
     card1.appendChild(front1);
     card1.appendChild(back1);
 
@@ -101,7 +106,9 @@ function createPairs(pairs) {
     let back2 = document.createElement("div");
     front2.classList.add("front-face");
     back2.classList.add("back-face");
-    front2.textContent = cardsData[i]; // add some content to the front face
+    let icon2 = document.createElement("i");
+    icon2.classList.add("fas", cardsData[i]);
+    front2.appendChild(icon2);
     card2.appendChild(front2);
     card2.appendChild(back2);
 
