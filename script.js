@@ -1,3 +1,30 @@
+const cardsData = [
+  "fa-dog",
+  "fa-cat",
+  "fa-crow",
+  "fa-dove",
+  "fa-dragon",
+  "fa-horse",
+  "fa-hippo",
+  "fa-fish",
+  "fa-frog",
+  "fa-kiwi-bird",
+  "fa-otter",
+  "fa-spider",
+];
+
+const colors = [
+  "red",
+  "yellow",
+  "purple",
+  "pink",
+  "orange",
+  "cyan",
+  "magenta",
+  "teal",
+  "coral",
+];
+
 let overlayHTML = `
   <div id="overlay">
     <h1>Select Game Mode</h1>
@@ -59,53 +86,15 @@ function startGame(mode) {
   createPairs(pairs);
 }
 
+// Define gameContainer in the global scope
+let gameContainer = document.querySelector(".memory-game");
+
 function createPairs(pairs) {
   let cards = [];
   let flippedCards = [];
   let matchedPairs = 0;
-  const cardsData = [
-    "fa-dog",
-    "fa-cat",
-    "fa-crow",
-    "fa-dove",
-    "fa-dragon",
-    "fa-horse",
-    "fa-hippo",
-    "fa-fish",
-    "fa-frog",
-    "fa-kiwi-bird",
-    "fa-otter",
-    "fa-spider",
-  ];
 
   // Mapping between icons and sound files
-  let iconSounds = {
-    "fa-dog": "assets/audio/dog.mp3",
-    "fa-cat": "assets/audio/cat.mp3",
-    "fa-crow": "assets/audio/crow.mp3",
-    "fa-dove": "assets/audio/dove.mp3",
-    "fa-dragon": "sounds/dragon.mp3",
-    "fa-horse": "sounds/horse.mp3",
-    "fa-hippo": "sounds/hippo.mp3",
-    "fa-fish": "sounds/fish.mp3",
-    "fa-frog": "sounds/frog.mp3",
-    "fa-kiwi-bird": "sounds/kiwi.mp3",
-    "fa-otter": "sounds/otter.mp3",
-    "fa-spider": "sounds/spider.mp3",
-    // ... add more icons and sounds as needed ...
-  };
-
-  const colors = [
-    "red",
-    "yellow",
-    "purple",
-    "pink",
-    "orange",
-    "cyan",
-    "magenta",
-    "teal",
-    "coral",
-  ];
 
   // Shuffle the cardsData and colors array
   cardsData.sort(() => Math.random() - 0.5);
@@ -147,6 +136,7 @@ function createPairs(pairs) {
     let icon2 = document.createElement("i");
     icon2.classList.add("fas", cardsData[i]);
     front2.appendChild(icon2);
+    front2.appendChild(icon2);
     card2.appendChild(front2);
     card2.appendChild(back2);
 
@@ -160,99 +150,69 @@ function createPairs(pairs) {
   }
 
   // add event listeners and append cards to the game container
-  let gameContainer = document.querySelector(".memory-game");
   cards.forEach((card) => {
-    card.addEventListener("click", function () {
-      if (flippedCards.length < 2 && !card.classList.contains("is-flipped")) {
-        card.classList.add("is-flipped");
-        flippedCards.push(card);
+    if (card) {
+      // Check if card is not null
+      card.addEventListener("click", function () {
+        if (flippedCards.length < 2 && !card.classList.contains("is-flipped")) {
+          card.classList.add("is-flipped");
+          flippedCards.push(card);
 
-        if (flippedCards.length === 2) {
-          if (flippedCards[0].dataset.pair === flippedCards[1].dataset.pair) {
-            // The cards match
-            matchedPairs++;
-            flippedCards = [];
-            if (matchedPairs === pairs) {
-              // All pairs have been matched, end the game
-              Swal.fire({
-                title: "Game over, you won!",
-                text: "Do you want to play again or Exit?",
-                showDenyButton: true,
-                confirmButtonText: "Play again",
-                denyButtonText: "Exit",
-                allowOutsideClick: false,
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  // User clicked "Play again", reset the game
-                  gameContainer.innerHTML = "";
-                  createPairs(pairs);
-                } else if (result.isDenied) {
-                  // User clicked "Return to start", refresh the page
-                  location.reload();
-                }
-              });
-            }
-          } else {
-            // The cards don't match, flip them back after a delay
-            setTimeout(() => {
-              flippedCards.forEach((card) => {
-                card.classList.remove("is-flipped");
-              });
+          if (flippedCards.length === 2) {
+            if (flippedCards[0].dataset.pair === flippedCards[1].dataset.pair) {
+              // The cards match
+              matchedPairs++;
               flippedCards = [];
-            }, 1000);
+              if (matchedPairs === pairs) {
+                // All pairs have been matched, end the game
+                Swal.fire({
+                  title: "Game over, you won!",
+                  text: "Do you want to play again or Exit?",
+                  showDenyButton: true,
+                  confirmButtonText: "Play again",
+                  denyButtonText: "Exit",
+                  allowOutsideClick: false,
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    // User clicked "Play again", reset the game
+                    gameContainer.innerHTML = "";
+                    createPairs(pairs);
+                  } else if (result.isDenied) {
+                    // User clicked "Return to start", refresh the page
+                    location.reload();
+                  }
+                });
+              }
+            } else {
+              // The cards don't match, flip them back after a delay
+              setTimeout(() => {
+                flippedCards.forEach((card) => {
+                  card.classList.remove("is-flipped");
+                });
+                flippedCards = [];
+              }, 1000);
+            }
           }
         }
-      }
+      });
+      gameContainer.appendChild(card);
+    }
+  });
+
+  let difficultyButtons = document.querySelectorAll(".difficulty-button");
+  difficultyButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      // Hide the overlay
+      document.getElementById("overlay").classList.add("hidden");
+
+      // Clear the game container
+      gameContainer.innerHTML = "";
+
+      // Get the number of pairs for the selected difficulty
+      let pairs = this.dataset.pairs;
+
+      // Start the game
+      createPairs(pairs);
     });
-    gameContainer.appendChild(card);
   });
 }
-
-let difficultyButtons = document.querySelectorAll(".difficulty-button");
-difficultyButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    // Hide the overlay
-    document.getElementById("overlay").classList.add("hidden");
-
-    // Clear the game container
-    gameContainer.innerHTML = "";
-
-    // Get the number of pairs for the selected difficulty
-    let pairs = this.dataset.pairs;
-
-    // Start the game
-    createPairs(pairs);
-  });
-});
-
-let iconSounds = {
-  "fa-dog": "assets/audio/dog.mp3",
-  "fa-cat": "assets/audio/cat.mp3",
-  "fa-crow": "assets/audio/crow.mp3",
-  "fa-dove": "assets/audio/dove.mp3",
-  "fa-dragon": "assets/audio/dragon.mp3",
-  "fa-horse": "assets/audio/horse.mp3",
-  "fa-hippo": "assets/audio/hippo.mp3",
-  "fa-fish": "assets/audio/fish.mp3",
-  "fa-frog": "assets/audio/frog.mp3",
-  "fa-kiwi-bird": "assets/audio/kiwi.mp3",
-  "fa-otter": "assets/audio/otter.mp3",
-  "fa-spider": "assets/audio/spider.mp3",
-  // ... add more icons and sounds as needed ...
-};
-
-let playSoundsButton = document.getElementById("play-sounds");
-let soundIndex = 0;
-let soundKeys = Object.keys(iconSounds);
-
-playSoundsButton.addEventListener("click", function () {
-  // Create a new audio element and play the sound
-  let soundFile = iconSounds[soundKeys[soundIndex]];
-  if (soundFile) {
-    let audio = new Audio(soundFile);
-    audio.play();
-  }
-
-  // Move to the next sound file for the next click
-  soundIndex = (soundIndex + 1) % soundKeys.length;
-});
