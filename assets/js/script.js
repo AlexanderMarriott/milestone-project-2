@@ -351,6 +351,9 @@ function gameOver(isGameWon) {
       if (result.isConfirmed) {
         // Restart the game here
         resetGame();
+      } else if (result.isDenied) {
+        // User clicked "Exit", refresh the page
+        location.reload();
       }
     });
   }
