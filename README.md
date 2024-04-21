@@ -99,6 +99,10 @@ Automated testing involves writing scripts to perform the tests automatically. I
 
 Both types of testing are important and have their own strengths and weaknesses. A good testing strategy usually involves a combination of both.
 
+## Deployment
+
+the site has been deployed to github pages. you can find the site here: [website](https://alexandermarriott.github.io/milestone-project-2/index.html)
+
 ## References
 
 Icons are sourced from [fontawesome](https://fontawesome.com/)
