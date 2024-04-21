@@ -46,8 +46,13 @@ Test the game in different browsers and on different devices to ensure it works 
 
 ### Differences Between Manual and Automated Testing
 
-Manual testing involves a person performing the tests step by step. It's useful for exploratory testing, usability testing, and ad-hoc testing, and it allows for human observation to find issues automated tests might miss.
+Manual testing involves a person performing the tests step by step. It's useful for exploratory testing, usability testing, and ad-hoc testing, and it allows for human observation to find issues automated tests might miss. This would usually be used during exploratory testing when the project is still in the early stages of development.
 
-Automated testing involves writing scripts to perform the tests automatically. It's useful for regression testing, load testing, and repetitive tasks, and it's more reliable and faster for large codebases or long-term projects.
+Automated testing involves writing scripts to perform the tests automatically. It's useful for regression testing, load testing, and repetitive tasks, and it's more reliable and faster for large codebases or long-term projects. Automated testing is good to use when performing repetetive tasks or when you have a large codebase to test.
 
 Both types of testing are important and have their own strengths and weaknesses. A good testing strategy usually involves a combination of both.
+
+## References
+
+Icons are sourced from [fontawesome](https://fontawesome.com/)
+The game pop ups use [sweet Alert](https://sweetalert.js.org/)
