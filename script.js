@@ -1,3 +1,5 @@
+module.exports = { createPairs, shuffleCards, addEventListeners };
+
 const cardsData = [
   "fa-dog",
   "fa-cat",
@@ -29,9 +31,26 @@ let overlayHTML = `
   <div id="overlay">
     <h1>Select Game Mode</h1>
     <p>Hover over each difficulty to see description.</p>
-    <button id="easy" class='difficulty-button' title='Easy mode: match 3 pairs. Pairs have different background colors.' aria-label='Easy mode: match 3 pairs. Pairs have different background colors.'>Easy</button>
-    <button id="normal" class='difficulty-button' title='Normal mode: Match 6 pairs. Pairs have different background colors.' aria-label='Normal mode: Match 6 pairs. Pairs have different background colors.'>Normal</button>
-    <button id="hard" class='difficulty-button' title='Hard mode: Match 12 pairs. Pairs have the same background colors.' aria-label='Hard mode: Match 12 pairs. Pairs have the same background colors.'>Hard</button>
+    <button id="easy" class='difficulty-button' title='Easy mode:
+    match 3 pairs.
+     Pairs have different background colors.' aria-label='Easy mode:
+     match 3 pairs.
+     Pairs have different background colors.'>Easy</button>
+    <button id="normal" class='difficulty-button' title='Normal mode:
+    Match 6 pairs.
+     Pairs have different background colors.
+     45 second timer.'
+     aria-label='Normal mode: Match 6 pairs.
+      Pairs have different background colors.
+      45 second timer.'>Normal</button>
+    <button id="hard" class='difficulty-button' title='Hard mode:
+    Match 12 pairs.
+     Pairs have the same background colors.
+     90 second timer
+     ' aria-label='Hard mode:
+      Match 12 pairs.
+      Pairs have the same background colors.
+      90 second timer.'>Hard</button>
     <h2>or</h2>
     <a class='return-button' href='index.html' id="exit" title='Exit the game' aria-label='Exit the game'>return home</a>
   </div>
@@ -272,7 +291,7 @@ function startTimer(mode) {
       timeLimit = 45;
       break;
     case "hard":
-      timeLimit = 201;
+      timeLimit = 90;
       break;
     default:
       timeLimit = 0; // Default time limit
