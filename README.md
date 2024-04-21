@@ -1,8 +1,7 @@
-# milestone-project-2
-
-## Memory Card Game
+# Memory Card Game
 
 This is a simple memory card game implemented in JavaScript.
+Find the game online here: [website](https://alexandermarriott.github.io/milestone-project-2/index.html)
 
 ## How to Play
 
@@ -27,12 +26,60 @@ The JavaScript code for the game does the following:
 - Add a timer to track how long it takes the player to match all pairs.
 - Add a score system based on the number of turns taken.
 - Add more levels or difficulty settings.
+- add database to keep track of high scores.
+
+## Design and U/X choices
+
+These choices were made with simplicity in mind and to draw the users focus mainly to the cards.
+Simple game background.
+Bold card backgrounds.
+Uniform styling to the card icons.
+
+### wireframes
+
+![home page](assets/readmeimages/wireframes/home-page.png)
+![game select](assets/readmeimages/wireframes/game-select.png)
+![easy mode](assets/readmeimages/wireframes/easy-mode.png)
+![normal mode](assets/readmeimages/wireframes/normal-mode.png)
+![hard mode](assets/readmeimages/wireframes/hard-mode.png)
+
+### final site
+
+![home page](assets/readmeimages/finalsite/homepage.png)
+![game select](assets/readmeimages/finalsite/gameselect.png)
+![easy mode](assets/readmeimages/finalsite/easymode.png)
+![normal mode](assets/readmeimages/finalsite/normalmode.png)
+![hard mode](assets/readmeimages/finalsite/hardmode.png)
+![contact us](assets/readmeimages/finalsite/contactus.png)
+![contact us confirm](assets/readmeimages/finalsite/contactusconfirm.png)
+
+I think the final site accurately reflects what i set out to do from the beginning. The only variation being the contact us form and confirmation.
 
 ## testing procedures
 
 ### Automated Testing
 
 Automated tests were written for this project using Jest, a JavaScript testing framework.
+all code was also ran through validation services. See results below
+
+![lint test](assets/readmeimages/testing/linttest.png)
+![files](assets/readmeimages/testing/files.png)
+
+#### JS lint
+
+The warnings returned were all expected, mainly caused by having JS create nearly all of the html needed for the game to function (hence the over 80 characters warning).
+Also the commas are caused by beautify when saving or copy/pasting the document.
+Neither effect game functionality.
+
+![files](assets/readmeimages/testing/jslint.png)
+
+#### w3c html checker
+
+![files](assets/readmeimages/testing/ws3html.png)
+
+#### w3c css validator
+
+![files](assets/readmeimages/testing/ws3css.png)
 
 ### Manual Testing
 
@@ -46,9 +93,9 @@ Test the game in different browsers and on different devices to ensure it works 
 
 ### Differences Between Manual and Automated Testing
 
-Manual testing involves a person performing the tests step by step. It's useful for exploratory testing, usability testing, and ad-hoc testing, and it allows for human observation to find issues automated tests might miss. This would usually be used during exploratory testing when the project is still in the early stages of development.
+Manual testing involves a person performing the tests step by step. It's useful for exploratory testing, usability testing, and ad-hoc testing, and it allows for human observation to find issues automated tests might miss.
 
-Automated testing involves writing scripts to perform the tests automatically. It's useful for regression testing, load testing, and repetitive tasks, and it's more reliable and faster for large codebases or long-term projects. Automated testing is good to use when performing repetetive tasks or when you have a large codebase to test.
+Automated testing involves writing scripts to perform the tests automatically. It's useful for regression testing, load testing, and repetitive tasks, and it's more reliable and faster for large codebases or long-term projects.
 
 Both types of testing are important and have their own strengths and weaknesses. A good testing strategy usually involves a combination of both.
 
