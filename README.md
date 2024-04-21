@@ -27,3 +27,27 @@ The JavaScript code for the game does the following:
 - Add a timer to track how long it takes the player to match all pairs.
 - Add a score system based on the number of turns taken.
 - Add more levels or difficulty settings.
+
+## testing procedures
+
+### Automated Testing
+
+Automated tests were written for this project using Jest, a JavaScript testing framework.
+
+### Manual Testing
+
+In addition to automated testing, this project has also been manually tested to ensure everything works as expected. Here are the steps for manual testing:
+
+Open the game in a web browser.
+Select a difficulty level.
+Flip over two cards. If they match, they should stay face up. If they don't match, they should be flipped back over after a short delay.
+Continue flipping over cards until all pairs have been matched. The game should then display a message indicating that you've won.
+Test the game in different browsers and on different devices to ensure it works correctly in all environments.
+
+### Differences Between Manual and Automated Testing
+
+Manual testing involves a person performing the tests step by step. It's useful for exploratory testing, usability testing, and ad-hoc testing, and it allows for human observation to find issues automated tests might miss.
+
+Automated testing involves writing scripts to perform the tests automatically. It's useful for regression testing, load testing, and repetitive tasks, and it's more reliable and faster for large codebases or long-term projects.
+
+Both types of testing are important and have their own strengths and weaknesses. A good testing strategy usually involves a combination of both.
