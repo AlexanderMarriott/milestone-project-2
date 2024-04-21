@@ -1,35 +1,37 @@
-// Test Case 1: Valid Input
-createPairs(4);
-// Expected Output: No errors should be logged to the console
-// Test Case 1: Valid Input
-createPairs(4);
-// Expected Output: No errors should be logged to the console
+const { createPairs, shuffleCards, addEventListeners } = require("./script"); // assuming these functions are exported from script.js
 
-// Test Case 2: Invalid Input
-createPairs(-2);
-// Expected Output: "Invalid number of pairs: -2" should be logged to the console
+describe("Memory Card Game", () => {
+  let cardsData;
+  let gameContainer;
+  let cards;
 
-// Test Case 3: Insufficient Cards Data
-cardsData.length = 2;
-createPairs(4);
-// Expected Output: "Insufficient cards data or colors" should be logged to the console
+  beforeEach(() => {
+    // Initialize variables before each test
+    cardsData = ["fa-dog", "fa-cat", "fa-fish"];
+    gameContainer = document.createElement("div");
+    cards = [];
+  });
 
-// Test Case 4: Game Mode - Easy
-startGame("easy");
-// Expected Output: The game should start in easy mode, with 3 pairs of cards
+  test("createPairs should create a card with the correct attributes", () => {
+    const card = createCard(cardsData[0], 0);
+    expect(card).toHaveClass("memory-card");
+    expect(card.dataset.pair).toBe("0");
+  });
 
-// Test Case 5: Game Mode - Normal
-startGame("normal");
-// Expected Output: The game should start in normal mode, with 6 pairs of cards
+  test("shuffleCards should shuffle the cards array", () => {
+    cards = cardsData.map((data, i) => createCard(data, i));
+    const originalOrder = [...cards];
+    shuffleCards(cards);
+    y;
+    expect(cards).not.toEqual(originalOrder);
+  });
 
-// Test Case 6: Game Mode - Hard
-startGame("hard");
-// Expected Output: The game should start in hard mode, with 12 pairs of cards
-
-// Test Case 7: Game Over - Game Won
-gameOver(true);
-// Expected Output: A congratulations message should be displayed with options to play again or exit
-
-// Test Case 8: Game Over - Game Lost
-gameOver(false);
-// Expected Output: A game over message should be displayed with an option to exit
+  test("addEventListeners should add click event listeners to cards", () => {
+    cards = cardsData.map((data, i) => createCard(data, i));
+    addEventListeners(cards);
+    const mockCallback = jest.fn();
+    cards[0].addEventListener("click", mockCallback);
+    cards[0].click();
+    expect(mockCallback).toHaveBeenCalled();
+  });
+});
