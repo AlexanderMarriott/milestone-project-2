@@ -1,5 +1,3 @@
-module.exports = { createPairs, shuffleCards, addEventListeners };
-
 const cardsData = [
   "fa-dog",
   "fa-cat",
