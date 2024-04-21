@@ -46,7 +46,7 @@ Uniform styling to the card icons.
 ### final site
 
 ![home page](assets/readmeimages/finalsite/homepage.png)
-![game select](assets/readmeimages/finalsite/gameselect.png)
+![game select](assets/readmeimages/finalsite/gameselection.png)
 ![easy mode](assets/readmeimages/finalsite/easymode.png)
 ![normal mode](assets/readmeimages/finalsite/normalmode.png)
 ![hard mode](assets/readmeimages/finalsite/hardmode.png)
